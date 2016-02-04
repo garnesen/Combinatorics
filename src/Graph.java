@@ -1,4 +1,3 @@
-
 public class Graph {
 
 	// am = Adjacency Matrix
@@ -14,6 +13,10 @@ public class Graph {
 		if ((am = parseGraph(amRepresentation)) == null) {
 			throw new IllegalArgumentException("Graph representation is invalid: " + amRepresentation);
 		}
+	}
+	
+	public SquareMatrix getAdjacencyMatrix() {
+		return am;
 	}
 
 	public boolean is_connected() {
@@ -31,7 +34,7 @@ public class Graph {
 	public String shortestPath(int start, int end) {
 		return null;
 	}
-
+	
 	private SquareMatrix parseGraph(String rep) {
 		String[] values = rep.split(",");
 		numVertices = Integer.parseInt(values[0]);
@@ -43,7 +46,7 @@ public class Graph {
 		int[][] graphMatrix = new int[numVertices][numVertices];
 		for (int row = 0; row < numVertices; row++) {
 			for (int col = 0; col < numVertices; col++) {
-				graphMatrix[row][col] = Integer.parseInt(values[row*numVertices + col + 1]);
+				graphMatrix[row][col] = Integer.parseInt(values[row * numVertices + col + 1]);
 			}
 		}
 		return new SquareMatrix(graphMatrix);

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -60,11 +61,19 @@ public class SelectionPanel extends JPanel {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					Utils.log("Input: " + input.getText());
-					if (fc.getSelectedFile().getPath().equals(input.getText())) {
-						listener.input(fc.getSelectedFile());
+					File inputFile = new File(input.getText());
+					if (inputFile.exists()) {
+						if (!listener.input(inputFile)) {
+							Utils.log("Halting graph creation.");
+							return;
+						}
 					} else {
-						listener.input(input.getText());
+						if (!listener.input(input.getText())) {
+							Utils.log("Halting graph creation.");
+							return;
+						}
 					}
+					listener.create();
 				}
 			}
 
