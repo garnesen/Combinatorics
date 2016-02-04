@@ -1,34 +1,26 @@
 import java.awt.Dimension;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
-import javax.swing.UIManager;
 
 public class Project1 {
-	
+
 	public static void main(String[] args) {
-		setLookAndFeel();
+		Utils.setLookAndFeel();
 		startApplication();
 	}
-	
+
 	private static void startApplication() {
 		JFrame frame = new JFrame("Test screen");
+		frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
+		DataPanel data = new DataPanel();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
 		frame.setPreferredSize(new Dimension(500, 500));
-		frame.add(new SelectionPanel());
+		frame.add(new SelectionPanel(data));
+		frame.add(data);
 		frame.setVisible(true);
 		frame.pack();
-	}
-	
-	/**
-	 * Try to change the look and feel of the application to that of the users system.
-	 */
-	private static void setLookAndFeel () {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception e) {
-			Utils.log("Error", "Look and feel not changed.");
-		}
 	}
 
 }

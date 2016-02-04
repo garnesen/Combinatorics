@@ -7,10 +7,10 @@
  *
  */
 public class SquareMatrix {
-	
+
 	private int size;
 	private int[][] matrix;
-	
+
 	/**
 	 * Creates a new SquareMatrix object.
 	 * @param matrix - The 2D array of values
@@ -22,7 +22,7 @@ public class SquareMatrix {
 		this.size = matrix.length;
 		this.matrix = matrix;
 	}
-	
+
 	/**
 	 * Creates a new SquareMatrix object with a specified size. All entries are 0.
 	 * @param size - The size of the matrix
@@ -31,7 +31,7 @@ public class SquareMatrix {
 		this.size = size;
 		this.matrix = new int[size][size];
 	}
-	
+
 	/**
 	 * Gets the value at an entry in the matrix.
 	 * @param row
@@ -41,7 +41,7 @@ public class SquareMatrix {
 	public int get(int row, int col) {
 		return matrix[row][col];
 	}
-	
+
 	/**
 	 * Sets a value at the specified entry.
 	 * @param row
@@ -51,7 +51,7 @@ public class SquareMatrix {
 	public void set(int row, int col, int val) {
 		matrix[row][col] = val;
 	}
-	
+
 	/**
 	 * Gets the size of the matrix.
 	 * @return the size
@@ -59,7 +59,7 @@ public class SquareMatrix {
 	public int getSize() {
 		return size;
 	}
-	
+
 	/**
 	 * Calculates the matrix to a given power.
 	 * @param power - The exponent
@@ -72,7 +72,7 @@ public class SquareMatrix {
 		}
 		return mult;
 	}
-	
+
 	/**
 	 * Multiply this matrix by another given matrix. Both must have the same size!
 	 * @param right - The right side of the matrix operation 
@@ -82,7 +82,7 @@ public class SquareMatrix {
 		// Check that these matrices have the same size.
 		if (right.getSize() != this.getSize())
 			return null;
-		
+
 		// Loop through the values to compute matrix multiplication.
 		SquareMatrix result = new SquareMatrix(this.getSize());
 		for (int rightCol = 0; rightCol < right.getSize(); rightCol++) {
@@ -96,5 +96,5 @@ public class SquareMatrix {
 		}
 		return result;
 	}
-	
+
 }
