@@ -62,6 +62,7 @@ public class Utils {
 		int labelRad = RADIUS + 20;
 		double div = 2 * Math.PI / am.getSize();
 		double angle = 0;
+		
 		// Calculate and store the x,y coordinates for each vertex. Also draw the labels.
 		ArrayList<Point> vertexPoints = new ArrayList<Point>();
 		for (int i = 0; i < am.getSize(); i++) {
@@ -71,6 +72,7 @@ public class Utils {
 			vertexPoints.add(new Point((int)xCoord + center.x, (int)yCoord + center.y));
 			angle += div;
 		}
+		
 		// Draw the edges between the vertices
 		for (int row = 0; row < am.getSize() - 1; row++) {
 			for (int col = row + 1; col < am.getSize(); col++) {

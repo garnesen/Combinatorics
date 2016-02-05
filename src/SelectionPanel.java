@@ -73,6 +73,7 @@ public class SelectionPanel extends JPanel {
 							return;
 						}
 					}
+					input.setText("");
 					listener.create();
 				}
 			}
