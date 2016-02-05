@@ -66,10 +66,11 @@ public class Utils {
 		// Calculate and store the x,y coordinates for each vertex. Also draw the labels.
 		ArrayList<Point> vertexPoints = new ArrayList<Point>();
 		for (int i = 0; i < am.getSize(); i++) {
-			double xCoord = RADIUS * Math.cos(angle);
-			double yCoord = RADIUS * Math.sin(angle);
+			int xCoord = (int)(RADIUS * Math.cos(angle) + center.x);
+			int yCoord = (int)(RADIUS * Math.sin(angle) + center.y);
 			g.drawString("V" + (i + 1), center.x + (int)(labelRad * Math.cos(angle)), center.y + (int)(labelRad * Math.sin(angle)));
-			vertexPoints.add(new Point((int)xCoord + center.x, (int)yCoord + center.y));
+			g.fillOval(xCoord - 4, yCoord - 4, 8, 8);
+			vertexPoints.add(new Point(xCoord, yCoord));
 			angle += div;
 		}
 		

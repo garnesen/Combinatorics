@@ -26,11 +26,12 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class DataPanel extends JPanel {
 
-	private final Point GRAPH_CENTER = new Point(250, 250);
+	private final Point GRAPH_CENTER = new Point(250, 225);
 	private ArrayList<Graph> graphs;
 	private HashMap<Graph, int[]> graphToVertexPair;
 	private int currentGraphIndex;
 	private boolean drawGraph;
+	private boolean createdOnce;
 	
 	private JPanel arrowBar;
 	final JLabel title;
@@ -50,13 +51,19 @@ public class DataPanel extends JPanel {
 		arrowBar.setLayout(new FlowLayout(FlowLayout.CENTER));
 		title = new JLabel();
 		data = new JLabel();
-		data.setFont(new Font(data.getFont().getName(), Font.PLAIN, 10));
+		data.setFont(new Font(data.getFont().getName(), Font.PLAIN, 11));
 	}
 
 	/**
 	 * Builds the UI for the graph presentation panel.
 	 */
 	public void create() {
+		// The panel should only be built once. Adding more graphs can be done without destroying the panel.
+		if (createdOnce) {
+			return;
+		}
+		createdOnce = true;
+		
 		Utils.log("Creating Data GUI");
 		
 		// Create the left arrow. Add a listener to shift the index left when clicked and update the data.
