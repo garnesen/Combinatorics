@@ -78,7 +78,7 @@ public class DataPanel extends JPanel {
 			}
 		});
 		
-		// Create the right arrow. Add a listener to shift the index left when clicked.
+		// Create the right arrow. Add a listener to shift the index right when clicked and update the data.
 		final JButton rightArrow = new JButton("-->");
 		rightArrow.addActionListener(new ActionListener() {
 

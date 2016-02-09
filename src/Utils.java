@@ -8,6 +8,7 @@ import javax.swing.UIManager;
  * A utility class to hold convenience methods.
  *    - Log methods to print out message with a tag
  *    - Method to change the look and feel of the application
+ *    - Method to draw a graph
  * @author Gunnar Arnesen
  *
  */
