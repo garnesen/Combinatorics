@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The SquareMatrix class.
  * 
@@ -66,7 +69,7 @@ public class SquareMatrix {
 	 * @return the calculates matrix
 	 */
 	public SquareMatrix power(int power) {
-		SquareMatrix mult = new SquareMatrix(matrix.clone());
+		SquareMatrix mult = this.clone();
 		for (int i = 0; i < power; i++) {
 			mult = multiply(mult);
 		}
@@ -95,6 +98,41 @@ public class SquareMatrix {
 			}
 		}
 		return result;
+	}
+	
+	/**
+	 * Get the diagonal of the matrix as List
+	 * @return the list containing the values on the diagonal
+	 */
+	public List<Integer> getDiagonal() {
+		List<Integer> diagonal = new ArrayList<Integer>(size);
+		for (int index = 0; index < size; index++) {
+			diagonal.add(matrix[index][index]);
+		}
+		return diagonal;
+	}
+	
+	@Override
+	public SquareMatrix clone() {
+		int[][] copy = new int[size][size];
+		for (int row = 0; row < size; row++ ) {
+			for (int col = 0; col < size; col++) {
+				copy[row][col] = matrix[row][col];
+			}
+		}
+		return new SquareMatrix(copy);
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		for (int row = 0; row < size; row++) {
+			for (int col = 0; col < size; col++) {
+				sb.append(matrix[row][col] + " ");
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 
 }
