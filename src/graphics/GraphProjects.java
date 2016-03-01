@@ -55,8 +55,8 @@ public class GraphProjects {
 			public void actionPerformed(ActionEvent e) {
 				Utils.log("Button selected: " + e.getActionCommand());
 				frame.remove(start);
+				frame.setLayout(new BorderLayout());
 				if (e.getActionCommand().equals(GRAPH_INFO)) {
-					frame.setLayout(new BorderLayout());
 					GraphInfoPanel data = new GraphInfoPanel();
 					frame.add(new SelectionPanel(data.getNotifier()), BorderLayout.PAGE_START);
 					frame.add(data, BorderLayout.CENTER);
