@@ -272,6 +272,14 @@ public class Graph {
 		}
 		return vertices;
 	}
+	
+	/**
+	 * Get the number of vertices.
+	 * @return the number of vertices
+	 */
+	public int getNumberVertices() {
+		return numVertices;
+	}
 
 	/**
 	 * Parses an adjacency matrix from it's string representation.
