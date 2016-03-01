@@ -21,14 +21,14 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class SelectionPanel extends JPanel {
 
-	private DataPanel listener;
+	private InputNotifier notifier;
 
 	/**
 	 * Creates a new SelctionPanel.
 	 * @param listener
 	 */
-	public SelectionPanel(DataPanel listener) {
-		this.listener = listener;
+	public SelectionPanel(InputNotifier notifier) {
+		this.notifier = notifier;
 		this.setLayout(new FlowLayout(FlowLayout.LEFT));
 		createSelection();
 	}
@@ -60,21 +60,22 @@ public class SelectionPanel extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					Utils.log("P1", "Input: " + input.getText());
-					File inputFile = new File(input.getText());
-					if (inputFile.exists()) {
-						if (!listener.input(inputFile)) {
-							Utils.log("P1", "Halting graph creation.");
-							return;
-						}
-					} else {
-						if (!listener.input(input.getText())) {
-							Utils.log("P1", "Halting graph creation.");
-							return;
-						}
-					}
-					input.setText("");
-					listener.create();
+					Utils.log("Input", input.getText());
+					notifier.onEnter(input.getText());
+//					File inputFile = new File(input.getText());
+//					if (inputFile.exists()) {
+//						if (!listener.input(inputFile)) {
+//							Utils.log("P1", "Halting graph creation.");
+//							return;
+//						}
+//					} else {
+//						if (!listener.input(input.getText())) {
+//							Utils.log("P1", "Halting graph creation.");
+//							return;
+//						}
+//					}
+//					input.setText("");
+//					listener.create();
 				}
 			}
 

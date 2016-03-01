@@ -53,7 +53,7 @@ public class GraphProjects {
 				if (e.getActionCommand().equals(GRAPH_INFO)) {
 					frame.setLayout(new BorderLayout());
 					DataPanel data = new DataPanel();
-					frame.add(new SelectionPanel(data), BorderLayout.PAGE_START);
+					frame.add(new SelectionPanel(data.getNotifier()), BorderLayout.PAGE_START);
 					frame.add(data, BorderLayout.CENTER);
 					frame.pack();
 				} else if (e.getActionCommand().equals(GRAPH_WEIGHTED)) {

@@ -180,5 +180,31 @@ public class DataPanel extends JPanel {
 		Utils.log("P1", "File read complete!");
 		return true;
 	}
+	
+	/**
+	 * Gets the InputNotifier for this panel.
+	 * @return
+	 */
+	public InputNotifier getNotifier() {
+		return new InputNotifier() {
+
+			@Override
+			public void onEnter(String data) {
+				File inputFile = new File(data);
+				if (inputFile.exists()) {
+					if (!input(inputFile)) {
+						Utils.log("P1", "Halting graph creation.");
+						return;
+					}
+				} else {
+					if (!input(data)) {
+						Utils.log("P1", "Halting graph creation.");
+						return;
+					}
+				}
+				create();
+			}
+		};
+	}
 
 }
