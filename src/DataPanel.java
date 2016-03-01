@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class DataPanel extends JPanel {
 
-	private final Point GRAPH_CENTER = new Point(250, 225);
+	private final Point GRAPH_CENTER = new Point(GraphProjects.GRAPH_SIZE / 2, GraphProjects.GRAPH_SIZE / 2);
 	private ArrayList<Graph> graphs;
 	private HashMap<Graph, int[]> graphToVertexPair;
 	private int currentGraphIndex;
@@ -64,7 +64,7 @@ public class DataPanel extends JPanel {
 		}
 		createdOnce = true;
 		
-		Utils.log("Creating Data GUI");
+		Utils.log("P1", "Creating Data GUI");
 		
 		// Create the left arrow. Add a listener to shift the index left when clicked and update the data.
 		final JButton leftArrow = new JButton("<--");
@@ -101,7 +101,7 @@ public class DataPanel extends JPanel {
 		drawGraph = true;
 		repaint();
 		
-		Utils.log("Data GUI built!");
+		Utils.log("P1", "Data GUI built!");
 
 	}
 	
@@ -142,7 +142,7 @@ public class DataPanel extends JPanel {
 	 * @param graphRepresentation
 	 */
 	public boolean input(String graphRepresentation) {
-		Utils.log("Parsing graph...");
+		Utils.log("P1", "Parsing graph...");
 		try {
 			// Get the values by splitting at the comma.
 			String [] values = graphRepresentation.split(",");
@@ -161,7 +161,7 @@ public class DataPanel extends JPanel {
 			Utils.log("Error", "Could not create a graph for (" + graphRepresentation + ")");
 			return false;
 		}
-		Utils.log("Parsing complete!");
+		Utils.log("P1", "Parsing complete!");
 		return true;
 	}
 
@@ -170,14 +170,14 @@ public class DataPanel extends JPanel {
 	 * @param f
 	 */
 	public boolean input(File file) {
-		Utils.log("Reading file...");
+		Utils.log("P1", "Reading file...");
 		try (Stream<String> lines = Files.lines(file.toPath())) {
 			lines.forEach(this::input);
 		} catch (IOException e) {
 			Utils.log("Error", "Could not read the input file: " + file.getPath());
 			return false;
 		}
-		Utils.log("File read complete!");
+		Utils.log("P1", "File read complete!");
 		return true;
 	}
 

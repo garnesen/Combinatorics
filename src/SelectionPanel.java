@@ -42,7 +42,7 @@ public class SelectionPanel extends JPanel {
 		chooseFile.setPreferredSize(new Dimension(100, 30));
 		// Text field for user input
 		final JTextField input = new JTextField("(Enter a file path or valid graph input)");
-		input.setPreferredSize(new Dimension(375, chooseFile.getPreferredSize().height));
+		input.setPreferredSize(new Dimension(425, chooseFile.getPreferredSize().height));
 		// File chooser to get the selected file
 		final JFileChooser fc = new JFileChooser();
 		chooseFile.addActionListener(new ActionListener() {
@@ -60,16 +60,16 @@ public class SelectionPanel extends JPanel {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					Utils.log("Input: " + input.getText());
+					Utils.log("P1", "Input: " + input.getText());
 					File inputFile = new File(input.getText());
 					if (inputFile.exists()) {
 						if (!listener.input(inputFile)) {
-							Utils.log("Halting graph creation.");
+							Utils.log("P1", "Halting graph creation.");
 							return;
 						}
 					} else {
 						if (!listener.input(input.getText())) {
-							Utils.log("Halting graph creation.");
+							Utils.log("P1", "Halting graph creation.");
 							return;
 						}
 					}

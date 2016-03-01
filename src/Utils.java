@@ -14,7 +14,7 @@ import javax.swing.UIManager;
  */
 public class Utils {
 
-	private static final String DEFAULT_TAG = "[P1]";
+	private static final String DEFAULT_TAG = "[P]";
 
 	private Utils() {}
 
