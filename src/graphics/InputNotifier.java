@@ -1,3 +1,4 @@
+package graphics;
 /**
  * An interface for creating an alert that data has been entered.
  * This interface is used to alert a panel that the user has entered data on

@@ -1,9 +1,12 @@
+package graphics;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
+
+import utils.Utils;
 
 /**
  * The main class for the Graph Projects.
@@ -24,6 +27,8 @@ public class GraphProjects {
 	 * Start up the application.
 	 */
 	private static void startApplication() {
+		Utils.log("Starting the application...");
+		
 		// Create the frame
 		frame = new JFrame("Graph Projects");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,7 +57,7 @@ public class GraphProjects {
 				frame.remove(start);
 				if (e.getActionCommand().equals(GRAPH_INFO)) {
 					frame.setLayout(new BorderLayout());
-					DataPanel data = new DataPanel();
+					GraphInfoPanel data = new GraphInfoPanel();
 					frame.add(new SelectionPanel(data.getNotifier()), BorderLayout.PAGE_START);
 					frame.add(data, BorderLayout.CENTER);
 					frame.pack();

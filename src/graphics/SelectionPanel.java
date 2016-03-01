@@ -1,15 +1,18 @@
+package graphics;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import utils.Utils;
+
 
 /**
  * The SelectionPanel class is one Panel in the main application. This includes the 'browse' button
@@ -62,20 +65,7 @@ public class SelectionPanel extends JPanel {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					Utils.log("Input", input.getText());
 					notifier.onEnter(input.getText());
-//					File inputFile = new File(input.getText());
-//					if (inputFile.exists()) {
-//						if (!listener.input(inputFile)) {
-//							Utils.log("P1", "Halting graph creation.");
-//							return;
-//						}
-//					} else {
-//						if (!listener.input(input.getText())) {
-//							Utils.log("P1", "Halting graph creation.");
-//							return;
-//						}
-//					}
-//					input.setText("");
-//					listener.create();
+					input.setText("");
 				}
 			}
 

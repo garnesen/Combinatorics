@@ -1,8 +1,12 @@
+package utils;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.UIManager;
+
+import math.Graph;
+import math.SquareMatrix;
 
 /**
  * A utility class to hold convenience methods.

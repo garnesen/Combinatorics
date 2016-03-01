@@ -1,3 +1,4 @@
+package graphics;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
@@ -16,6 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import math.Graph;
+import utils.Utils;
+
 /**
  * This panel presents the interpreted graphs and data on them.
  * Graphs are drawn by placing the vertices around a circle with
@@ -24,7 +28,7 @@ import javax.swing.JPanel;
  *
  */
 @SuppressWarnings("serial")
-public class DataPanel extends JPanel {
+public class GraphInfoPanel extends JPanel {
 
 	private final Point GRAPH_CENTER = new Point(GraphProjects.GRAPH_SIZE / 2, GraphProjects.GRAPH_SIZE / 2);
 	private ArrayList<Graph> graphs;
@@ -40,7 +44,7 @@ public class DataPanel extends JPanel {
 	/**
 	 * Creates a DataPanel object.
 	 */
-	public DataPanel() {
+	public GraphInfoPanel() {
 		graphs = new ArrayList<Graph>();
 		graphToVertexPair = new HashMap<Graph, int[]>();
 		currentGraphIndex = 0;
