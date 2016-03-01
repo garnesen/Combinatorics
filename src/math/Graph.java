@@ -249,7 +249,7 @@ public class Graph {
 	public int disconnectVertex(int vertex) {
 		int edgesRemoved = 0;
 		for (int col = 0; col < am.getSize(); col++) {
-			if (am.get(vertex, col) == 1) {
+			if (am.get(vertex, col) > 0) {
 				am.set(vertex, col, 0);
 				am.set(col, vertex, 0);
 				edgesRemoved++;
@@ -266,7 +266,7 @@ public class Graph {
 	public List<Integer> getAdjacentVertices(int vertex) {
 		List<Integer> vertices = new ArrayList<Integer>();
 		for (int col = 0; col < am.getSize(); col++) {
-			if (am.get(vertex, col) == 1) {
+			if (am.get(vertex, col) > 0) {
 				vertices.add(col);
 			}
 		}
