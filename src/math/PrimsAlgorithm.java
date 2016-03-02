@@ -2,6 +2,9 @@ package math;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import utils.Utils;
 
 /**
  * A class that represents a weighted graph. It extends the functionality
@@ -19,6 +22,7 @@ public class PrimsAlgorithm extends Graph {
 	public PrimsAlgorithm(SquareMatrix am) {
 		super(am);
 		verticesVisited = new ArrayList<Integer>();
+		currentWeight = 0;
 	}
 	
 	/**
@@ -28,10 +32,11 @@ public class PrimsAlgorithm extends Graph {
 	public PrimsAlgorithm(String amRepresentation) {
 		super(amRepresentation);
 		verticesVisited = new ArrayList<Integer>();
+		currentWeight = 0;
 	}
 	
 	private List<Integer> verticesVisited;
-	
+	private int currentWeight;
 	/**
 	 * Steps forward once in Prim's algorithm. This is defined by either getting
 	 * a random vertex if this is the first step or adding a vertex adjacent to
@@ -41,6 +46,7 @@ public class PrimsAlgorithm extends Graph {
 	public boolean stepForward() {
 		//  All the vertices have visited.
 		if (verticesVisited.size() == this.getNumberVertices()) {
+			Utils.log("Prim", "Total weight of minimal spanning tree: " + currentWeight);
 			return false;
 		}
 		
@@ -53,17 +59,26 @@ public class PrimsAlgorithm extends Graph {
 		
 		// Pick a least-expensive edge with one vertex in the array and one not.
 		int minEdge = Integer.MAX_VALUE;
+		int curVertex = -1;
 		int newVertex = -1;
 		SquareMatrix am = getAdjacencyMatrix();
 		for (int vertex : verticesVisited) {
-			for (int adjVertex : getAdjacentVertices(vertex)) {
+			List<Integer> uniqueAdjacentVertices = getAdjacentVertices(vertex).stream().filter(v -> !verticesVisited.contains(v)).collect(Collectors.toList());
+			for (int adjVertex : uniqueAdjacentVertices) {
 				if (minEdge > am.get(vertex, adjVertex)) {
 					minEdge = am.get(vertex, adjVertex);
+					curVertex = vertex;
 					newVertex = adjVertex;
 				}
 			}
 		}
 		verticesVisited.add(newVertex);
+		currentWeight += minEdge;
+		
+		// Log the data
+		StringBuilder sb = new StringBuilder("Using edge ").append(curVertex).append("-").append(newVertex).append(", with weight ").append(minEdge);
+		Utils.log("Prim", sb.toString());
+		
 		return true;
 	}
 	
@@ -79,7 +94,10 @@ public class PrimsAlgorithm extends Graph {
 		}
 		
 		// Remove the last step made.
-		verticesVisited.remove(verticesVisited.size() - 1);
+		int vertex = verticesVisited.remove(verticesVisited.size() - 1);
+		
+		// Log the data
+		Utils.log("Prim", "Stepped back, removed vertex " + vertex);
 		return true;
 	}
 	
