@@ -54,7 +54,7 @@ public class PrimsAlgorithm extends Graph {
 		if (verticesVisited.size() == 0) {
 			int vertex = (int) (Math.random() * this.getNumberVertices());
 			verticesVisited.add(vertex);
-			Utils.log("Prim", "Added random vertex " + vertex);
+			Utils.log("Prim", "Added random vertex " + (vertex + 1));
 			return true;
 		}
 		
@@ -77,7 +77,7 @@ public class PrimsAlgorithm extends Graph {
 		currentWeight += minEdge;
 		
 		// Log the data
-		StringBuilder sb = new StringBuilder("Using edge ").append(curVertex).append("-").append(newVertex).append(", with weight ").append(minEdge);
+		StringBuilder sb = new StringBuilder("Using edge ").append(curVertex + 1).append("-").append(newVertex + 1).append(", with weight ").append(minEdge);
 		Utils.log("Prim", sb.toString());
 		
 		return true;
