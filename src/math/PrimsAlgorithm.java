@@ -54,6 +54,7 @@ public class PrimsAlgorithm extends Graph {
 		if (verticesVisited.size() == 0) {
 			int vertex = (int) (Math.random() * this.getNumberVertices());
 			verticesVisited.add(vertex);
+			Utils.log("Prim", "Added random vertex " + vertex);
 			return true;
 		}
 		
@@ -90,6 +91,7 @@ public class PrimsAlgorithm extends Graph {
 	public boolean stepBackward() {
 		// There are no vertices so we cannot step backwards in the algorithm.
 		if (verticesVisited.size() == 0) {
+			Utils.log("Prim", "Cannot step back more");
 			return false;
 		}
 		

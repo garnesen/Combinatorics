@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 
 import math.Graph;
 import math.SquareMatrix;
+import math.PrimsAlgorithm;
 
 /**
  * A utility class to hold convenience methods.
@@ -59,6 +60,7 @@ public class Utils {
 	 * with equal distances from each other. Then, the edges are placed between
 	 * the vertices.
 	 * @param g
+	 * @param graph
 	 * @param center
 	 */
 	public static void drawGraph(Graphics g, Graph graph, Point center) {
@@ -87,6 +89,16 @@ public class Utils {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * Draws a weighted graph.
+	 * @param g
+	 * @param graph
+	 * @param center
+	 */
+	public static void drawGraph(Graphics g, PrimsAlgorithm graph, Point center) {
+		
 	}
 
 }

@@ -62,7 +62,10 @@ public class GraphProjects {
 					frame.add(data, BorderLayout.CENTER);
 					frame.pack();
 				} else if (e.getActionCommand().equals(GRAPH_WEIGHTED)) {
-					// open panel
+					WeightedGraphPanel prim = new WeightedGraphPanel();
+					frame.add(new SelectionPanel(prim.getNotifier()), BorderLayout.PAGE_START);
+					frame.add(prim, BorderLayout.CENTER);
+					frame.pack();
 				}
 			}
 		};
