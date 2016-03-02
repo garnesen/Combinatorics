@@ -84,7 +84,7 @@ public class Utils {
 		// Draw the edges between the vertices
 		for (int row = 0; row < am.getSize() - 1; row++) {
 			for (int col = row + 1; col < am.getSize(); col++) {
-				if (am.get(row, col) == 1) {
+				if (am.get(row, col) > 0) {
 					g.drawLine(vertexPoints.get(row).x, vertexPoints.get(row).y, vertexPoints.get(col).x, vertexPoints.get(col).y);
 				}
 			}
