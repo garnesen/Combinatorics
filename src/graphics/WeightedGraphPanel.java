@@ -19,6 +19,13 @@ import javax.swing.JPanel;
 import math.PrimsAlgorithm;
 import utils.Utils;
 
+/**
+ * This panel draws the current phase of the Prim's algorithm. Unfortunately,
+ * I could not devise a way to draw the edges with their numbers without it
+ * getting messy, so it only highlights the visited edges/vertices.
+ * @author Gunnar Arnesen
+ *
+ */
 @SuppressWarnings("serial")
 public class WeightedGraphPanel extends JPanel {
 
@@ -35,6 +42,9 @@ public class WeightedGraphPanel extends JPanel {
 
 	private final JLabel title;
 
+	/**
+	 * Create a new WeightedGraphPanel
+	 */
 	public WeightedGraphPanel() {
 		graphs = new ArrayList<PrimsAlgorithm>();
 		currentGraphIndex = 0;
@@ -48,6 +58,9 @@ public class WeightedGraphPanel extends JPanel {
 		title = new JLabel();
 	}
 
+	/**
+	 * Builds the UI.
+	 */
 	public void create() {
 		// The panel should only be built once. Adding more graphs can be done without destroying the panel.
 		if (createdOnce) {
@@ -86,6 +99,7 @@ public class WeightedGraphPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				graphs.get(currentGraphIndex).stepBackward();
+				repaint();
 			}
 		});
 
@@ -96,6 +110,7 @@ public class WeightedGraphPanel extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				graphs.get(currentGraphIndex).stepForward();
+				repaint();
 			}
 		});
 
