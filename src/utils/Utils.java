@@ -1,13 +1,16 @@
 package utils;
+import java.awt.BasicStroke;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Point;
 import java.util.ArrayList;
 
 import javax.swing.UIManager;
 
 import math.Graph;
-import math.SquareMatrix;
 import math.PrimsAlgorithm;
+import math.SquareMatrix;
 
 /**
  * A utility class to hold convenience methods.
@@ -98,7 +101,42 @@ public class Utils {
 	 * @param center
 	 */
 	public static void drawGraph(Graphics g, PrimsAlgorithm graph, Point center) {
+		SquareMatrix am = graph.getAdjacencyMatrix();
+		int RADIUS = 150;
+		int labelRad = RADIUS + 20;
+		double div = 2 * Math.PI / am.getSize();
+		double angle = 0;
 		
+		// Calculate and store the x,y coordinates for each vertex. Also draw the labels.
+		ArrayList<Point> vertexPoints = new ArrayList<Point>();
+		for (int i = 0; i < am.getSize(); i++) {
+			int xCoord = (int)(RADIUS * Math.cos(angle) + center.x);
+			int yCoord = (int)(RADIUS * Math.sin(angle) + center.y);
+			g.drawString("V" + (i + 1), center.x + (int)(labelRad * Math.cos(angle)), center.y + (int)(labelRad * Math.sin(angle)));
+			if (graph.getVerticesVisited().contains(i)) {
+				g.setColor(Color.RED);
+			} else {
+				g.setColor(Color.GRAY);
+			}
+			g.fillOval(xCoord - 4, yCoord - 4, 8, 8);
+			vertexPoints.add(new Point(xCoord, yCoord));
+			angle += div;
+		}
+		
+		// Draw the edges between the vertices
+		for (int row = 0; row < am.getSize() - 1; row++) {
+			for (int col = row + 1; col < am.getSize(); col++) {
+				if (am.get(row, col) > 0 && graph.seenEdge(new Point(row, col))) {
+					g.setColor(Color.RED);
+					((Graphics2D) g).setStroke(new BasicStroke(5));
+					g.drawLine(vertexPoints.get(row).x, vertexPoints.get(row).y, vertexPoints.get(col).x, vertexPoints.get(col).y);
+				} else if (am.get(row, col) > 0) {
+					g.setColor(Color.GRAY);
+					((Graphics2D) g).setStroke(new BasicStroke(1));
+					g.drawLine(vertexPoints.get(row).x, vertexPoints.get(row).y, vertexPoints.get(col).x, vertexPoints.get(col).y);
+				}
+			}
+		}
 	}
 
 }
